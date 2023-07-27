@@ -1,12 +1,12 @@
-FROM node:14.15.3-alpine
+FROM nikolaik/python-nodejs:python3.9-nodejs16-bullseye
 
 WORKDIR /app
-COPY package.json .
+RUN cd $WORKDIR
 RUN npm install -g @nestjs/cli
+COPY package.json .
 RUN npm install
 COPY . .
 RUN npm run build
-RUN cd $WORKDIR
 
 EXPOSE 3000
 
